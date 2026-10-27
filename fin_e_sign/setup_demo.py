@@ -3,12 +3,12 @@ One-shot demo data setup for the DSC signing flow.
 
 Run from bench:
 
-    bench --site sign.local execute e_sign.setup_demo.run
+    bench --site sign.local execute fin_e_sign.setup_demo.run
 
 Idempotent: re-running updates rather than duplicates.
 Cleanup:
 
-    bench --site sign.local execute e_sign.setup_demo.teardown
+    bench --site sign.local execute fin_e_sign.setup_demo.teardown
 """
 
 import frappe
@@ -124,7 +124,7 @@ def test_pairing():
 	Generates a pairing code, then exchanges it for a site token using a fake
 	agent fingerprint — the same handshake dsc-bridge performs.
 	"""
-	from e_sign.api import agent
+	from fin_e_sign.api import agent
 
 	gen = agent.generate_pairing_code()
 	print(f"generated code: {gen['pairing_code']}")
@@ -165,7 +165,7 @@ def test_geocode():
 	Useful for verifying outbound internet + Nominatim policy compliance
 	without needing a USB token or the full signing flow.
 	"""
-	from e_sign.digital_signature.geocoding import reverse_geocode
+	from fin_e_sign.digital_signature.geocoding import reverse_geocode
 
 	# Anna Salai, Chennai — a well-known landmark for predictable output.
 	lat, lng = 13.0604, 80.2496
@@ -267,7 +267,7 @@ def _settings():
 	# real contact address before going to production per Nominatim's policy.
 	doc.enforce_signer_location = 1
 	doc.geocoding_provider = "nominatim"
-	doc.geocoding_user_agent = "e_sign DSC Demo (demo@example.com)"
+	doc.geocoding_user_agent = "fin_e_sign DSC Demo (demo@example.com)"
 
 	doc.set("expiry_warning_days", [])
 	for d in (30, 15, 7, 1):
@@ -289,7 +289,7 @@ def _profile(user: str, company: str | None):
 	# NOTE: We deliberately do NOT seed a certificate fingerprint here.
 	# A fingerprint is the SHA-256 of a real certificate on a physical token and
 	# must only be set by registering an actual token (see
-	# e_sign.api.agent.register_certificate / the "Register Certificate" button
+	# fin_e_sign.api.agent.register_certificate / the "Register Certificate" button
 	# on the DSC Profile form). Seeding a fake value made every signing attempt
 	# fail with "Certificate on token does not match…". Leaving it blank keeps the
 	# demo profile usable (signing-time fingerprint binding is skipped when no

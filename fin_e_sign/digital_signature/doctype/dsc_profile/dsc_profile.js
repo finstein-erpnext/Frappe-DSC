@@ -3,7 +3,7 @@
  *
  * Adds a "Register Certificate" button that reads the certificate from the
  * token plugged into the local dsc-bridge agent and registers it against this
- * profile. The server (e_sign.api.agent.register_certificate) computes the
+ * profile. The server (fin_e_sign.api.agent.register_certificate) computes the
  * SHA-256 fingerprint from the certificate DER and stores it — the fingerprint
  * is NEVER entered by hand. This is the only supported way to populate the
  * Certificate Fingerprint field.
@@ -74,7 +74,7 @@ function is_paired(status) {
 async function auto_pair() {
 	const codeResp = await new Promise((resolve, reject) => {
 		frappe.call({
-			method: "e_sign.api.agent.generate_pairing_code",
+			method: "fin_e_sign.api.agent.generate_pairing_code",
 			callback: (r) =>
 				r && r.message
 					? resolve(r.message)
@@ -154,7 +154,7 @@ function register_selected(frm, cert) {
 		return;
 	}
 	frappe.call({
-		method: "e_sign.api.agent.register_certificate",
+		method: "fin_e_sign.api.agent.register_certificate",
 		args: {
 			profile_name: frm.doc.name,
 			cert_der_b64: cert.cert_der_b64,

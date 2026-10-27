@@ -14,7 +14,7 @@ from frappe.utils import now_datetime
 # Pairing codes are stored in Frappe's Redis cache so they survive worker
 # restarts and work across gunicorn workers (a process-local dict would be
 # lost on reload and invisible to other workers).
-_PAIRING_KEY_PREFIX = "e_sign:pairing:"
+_PAIRING_KEY_PREFIX = "fin_e_sign:pairing:"
 _PAIRING_TTL_SECONDS = 600  # 10 minutes
 
 
@@ -122,7 +122,7 @@ def validate_pairing_code(pairing_code, agent_fingerprint, os_platform=None, age
 	# Provide the server-side HMAC secret to the agent so it can verify HMAC
 	# tags on subsequent /v1/sign requests (PRD §13.4 / §17.1). The plaintext
 	# is delivered exactly once at pair time.
-	from e_sign.digital_signature.doctype.dsc_settings.dsc_settings import (
+	from fin_e_sign.digital_signature.doctype.dsc_settings.dsc_settings import (
 		get_or_create_hmac_secret,
 	)
 	hmac_secret = get_or_create_hmac_secret()

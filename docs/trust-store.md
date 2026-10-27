@@ -18,7 +18,7 @@ one system and untrusted on another.
 
 ## Two trust sources
 
-`e_sign` builds its trusted-CA set by **merging two sources**:
+`fin_e_sign` builds its trusted-CA set by **merging two sources**:
 
 | Source | What it is | Setup |
 |---|---|---|

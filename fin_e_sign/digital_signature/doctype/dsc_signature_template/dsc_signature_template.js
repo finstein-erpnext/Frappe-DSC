@@ -12,7 +12,7 @@
 
 const PAGE_WIDTH_PT = 612;
 const PAGE_HEIGHT_PT = 792;
-const PREVIEW_WIDTH_PX = 200; // matches .dsc-coord-preview in e_sign.css
+const PREVIEW_WIDTH_PX = 200; // matches .dsc-coord-preview in fin_e_sign.css
 const PREVIEW_HEIGHT_PX = 260;
 const DESIGNER_WIDTH_PX = 600;
 const DESIGNER_HEIGHT_PX = (DESIGNER_WIDTH_PX * PAGE_HEIGHT_PT) / PAGE_WIDTH_PT;

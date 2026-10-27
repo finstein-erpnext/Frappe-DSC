@@ -2,7 +2,7 @@
 End-to-end test of the signing pipeline inside Frappe.
 
 Run with:
-    bench --site mysite.local execute e_sign.test_signing_pipeline.run_test
+    bench --site mysite.local execute fin_e_sign.test_signing_pipeline.run_test
 """
 
 import asyncio
@@ -267,7 +267,7 @@ def run_test():
 		print(f"   Updated request:   {signing_request}")
 
 	# Log audit events
-	from e_sign.digital_signature.audit import log_event
+	from fin_e_sign.digital_signature.audit import log_event
 
 	log_event(signing_request, "Hash Computed", {"algorithm": "sha256"})
 	log_event(signing_request, "Signature Returned", {"cert_cn": "RAJESH KUMAR"})

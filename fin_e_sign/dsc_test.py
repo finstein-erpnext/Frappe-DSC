@@ -16,7 +16,7 @@ def run():
 		print("Missing ToDo or Rule - aborting")
 		return
 
-	from e_sign.digital_signature.rule_engine import evaluate_on_change
+	from fin_e_sign.digital_signature.rule_engine import evaluate_on_change
 
 	doc = frappe.get_doc("ToDo", todo_name)
 	try:

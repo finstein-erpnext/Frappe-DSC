@@ -15,7 +15,7 @@ import inspect
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from e_sign.digital_signature import print_gate
+from fin_e_sign.digital_signature import print_gate
 
 # Exactly what frappe/printing/page/print/print.js:646 (render_page) puts on the wire, plus the
 # `cmd` the request handler injects.
@@ -73,7 +73,7 @@ class TestPrintGateForwarding(FrappeTestCase):
 		print_format_module.download_pdf = spy
 		try:
 			frappe.call(
-				"e_sign.digital_signature.print_gate.download_pdf",
+				"fin_e_sign.digital_signature.print_gate.download_pdf",
 				doctype="ToDo",
 				name=self.todo.name,
 				**PRINT_VIEW_PARAMS,
@@ -140,7 +140,7 @@ class TestPrintGateForwarding(FrappeTestCase):
 		print_format_module.download_pdf = spy
 		try:
 			frappe.call(
-				"e_sign.digital_signature.print_gate.download_pdf",
+				"fin_e_sign.digital_signature.print_gate.download_pdf",
 				doctype="ToDo",
 				name=self.todo.name,
 				language="de",

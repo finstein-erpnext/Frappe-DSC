@@ -24,7 +24,7 @@ from io import BytesIO
 import frappe
 from frappe.utils import now_datetime
 
-from e_sign.digital_signature.signature_anchor import locate_signature_anchor
+from fin_e_sign.digital_signature.signature_anchor import locate_signature_anchor
 
 from asn1crypto import algos, cms, core, x509 as asn1_x509
 from pyhanko.pdf_utils.incremental_writer import IncrementalPdfFileWriter
@@ -42,7 +42,7 @@ from pyhanko_certvalidator.registry import SimpleCertificateStore
 # Sessions are stored in Frappe's Redis cache so they survive across worker
 # processes, bench restarts, and live-reloads — an in-memory dict here would be
 # lost any time the worker recycled, breaking finalize with "session expired".
-_SESSION_KEY_PREFIX = "e_sign:session:"
+_SESSION_KEY_PREFIX = "fin_e_sign:session:"
 _SESSION_TTL_SECONDS = 600  # 10 minutes — enough for the user to enter a PIN
 
 

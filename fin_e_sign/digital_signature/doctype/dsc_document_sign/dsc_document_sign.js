@@ -7,7 +7,7 @@
  * bottom-left, the coordinate space pyHanko expects) and written into the
  * read-only sig_* fields.
  *
- * The signing itself is handled by the global e_sign.js "Sign with DSC"
+ * The signing itself is handled by the global fin_e_sign.js "Sign with DSC"
  * button, which appears once saving this record has created a pending
  * DSC Signing Request.
  */
@@ -37,10 +37,10 @@ frappe.ui.form.on("DSC Document Sign", {
 	},
 });
 
-// pdf.js is vendored into the app (e_sign/public/js/vendor/) and served from
+// pdf.js is vendored into the app (fin_e_sign/public/js/vendor/) and served from
 // /assets/ so signature placement works fully offline — no CDN, no internet.
-const PDFJS_URL = "/assets/e_sign/js/vendor/pdf.min.js";
-const PDFJS_WORKER = "/assets/e_sign/js/vendor/pdf.worker.min.js";
+const PDFJS_URL = "/assets/fin_e_sign/js/vendor/pdf.min.js";
+const PDFJS_WORKER = "/assets/fin_e_sign/js/vendor/pdf.worker.min.js";
 
 // Load pdf.js once per browser session.
 function load_pdfjs() {

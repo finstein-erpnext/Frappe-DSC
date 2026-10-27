@@ -1,5 +1,5 @@
 """
-Post-install setup for the e_sign app (PRD §12.6).
+Post-install setup for the fin_e_sign app (PRD §12.6).
 
 Adds a Custom Field `is_dsc_signed` to the core File doctype so signed PDFs
 can be tracked and protected from deletion by non-DSC-Administrators.

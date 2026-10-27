@@ -1,5 +1,5 @@
 [project]
-name = "e_sign"
+name = "fin_e_sign"
 authors = [
     { name = "Ragav", email = "prasathragav55@gmail.com"}
 ]

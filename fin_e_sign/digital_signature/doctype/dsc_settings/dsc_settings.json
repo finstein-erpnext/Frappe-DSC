@@ -187,7 +187,7 @@
    "description": "Required when provider is Google. Leave blank for Nominatim."
   },
   {
-   "default": "e_sign DSC Signing (admin@example.com)",
+   "default": "fin_e_sign DSC Signing (admin@example.com)",
    "fieldname": "geocoding_user_agent",
    "fieldtype": "Data",
    "label": "Geocoding User-Agent",

@@ -1,5 +1,5 @@
 /**
- * e_sign — Global client script for the Digital Signature platform.
+ * fin_e_sign — Global client script for the Digital Signature platform.
  *
  * Loaded on every Desk page via app_include_js.
  * Adds a "Sign with DSC" button to any saved+submitted document for which
@@ -12,12 +12,12 @@
 	"use strict";
 
 	// ----- Config -----
-	const STATUS_API = "e_sign.api.signing.get_form_actions";
-	const INITIATE_API = "e_sign.api.signing.initiate";
-	const FINALIZE_API = "e_sign.api.signing.finalize";
-	const RETRY_API = "e_sign.api.signing.retry";
-	const CANCEL_API = "e_sign.api.signing.cancel";
-	const ABORT_API = "e_sign.api.signing.abort_in_progress";
+	const STATUS_API = "fin_e_sign.api.signing.get_form_actions";
+	const INITIATE_API = "fin_e_sign.api.signing.initiate";
+	const FINALIZE_API = "fin_e_sign.api.signing.finalize";
+	const RETRY_API = "fin_e_sign.api.signing.retry";
+	const CANCEL_API = "fin_e_sign.api.signing.cancel";
+	const ABORT_API = "fin_e_sign.api.signing.abort_in_progress";
 
 	const AGENT_HOST = "127.0.0.1";
 	const DEFAULT_AGENT_PORT = 4645;
@@ -146,7 +146,7 @@
 		dialog.show();
 		runSigningPipeline(frm, info, port, dialog, ctx).catch((err) => {
 			dialog.set_state("error", formatError(err));
-			console.error("[e_sign] signing failed:", err);
+			console.error("[fin_e_sign] signing failed:", err);
 			// Free up the In Progress request so the user can retry without
 			// needing the DB reset.
 			if (ctx.signing_request) {
@@ -165,7 +165,7 @@
 	// ----- One-time bridge install prompt -----
 
 	// Installer files are shipped with the app and served statically.
-	const DOWNLOAD_BASE = "/assets/e_sign/downloads/";
+	const DOWNLOAD_BASE = "/assets/fin_e_sign/downloads/";
 	const BRIDGE_INSTALLERS = {
 		windows: { file: "dsc-bridge-1.0.0-windows.zip", label: __("Download for Windows") },
 		linux: { file: "dsc-bridge_1.0.0_amd64.deb", label: __("Download for Linux (Ubuntu/Debian)") },
@@ -385,7 +385,7 @@
 	async function autoPairBridge(port) {
 		const codeResp = await new Promise((resolve, reject) => {
 			frappe.call({
-				method: "e_sign.api.agent.generate_pairing_code",
+				method: "fin_e_sign.api.agent.generate_pairing_code",
 				callback: (r) => (r && r.message ? resolve(r.message) : reject(new Error(__("Could not generate a pairing code.")))),
 				error: () => reject(new Error(__("Could not generate a pairing code."))),
 			});

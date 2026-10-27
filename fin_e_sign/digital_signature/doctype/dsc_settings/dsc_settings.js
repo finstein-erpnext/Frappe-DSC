@@ -3,11 +3,11 @@
 //
 // The bridge is the small local agent each signer installs once on their own
 // machine so the browser can talk to their USB DSC token. Installers are shipped
-// with the app and served from /assets/e_sign/downloads/.
+// with the app and served from /assets/fin_e_sign/downloads/.
 
 frappe.ui.form.on("DSC Settings", {
 	refresh(frm) {
-		const base = "/assets/e_sign/downloads/";
+		const base = "/assets/fin_e_sign/downloads/";
 		const installers = [
 			{ label: __("Windows (64-bit)"), file: "dsc-bridge-1.0.0-windows.zip" },
 			{ label: __("Windows (32-bit — Hypersecu/HYP2003)"), file: "dsc-bridge-1.0.0-windows-x86.zip" },

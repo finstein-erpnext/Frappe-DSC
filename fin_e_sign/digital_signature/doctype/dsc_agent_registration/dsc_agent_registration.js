@@ -3,7 +3,7 @@
 // "Pair This Computer" does one-click pairing: the browser asks the server for
 // a one-time code, then hands that code straight to the local dsc-bridge agent
 // at https://127.0.0.1:<port>/v1/pair — no code to copy, no curl to run. This
-// is the same browser-to-localhost-agent pattern e_sign.js uses for signing.
+// is the same browser-to-localhost-agent pattern fin_e_sign.js uses for signing.
 //
 // "Show Manual Code" is kept as a fallback for pairing an agent that runs on a
 // different machine than the browser.
@@ -40,7 +40,7 @@ frappe.ui.form.on("DSC Agent Registration", {
 						__("Disable this paired agent? It will no longer be able to sign."),
 						() => {
 							frappe.call({
-								method: "e_sign.api.agent.revoke",
+								method: "fin_e_sign.api.agent.revoke",
 								args: { agent_registration: frm.doc.name },
 								callback() {
 									frappe.show_alert(
@@ -74,7 +74,7 @@ async function pairThisComputer(frm) {
 		}
 
 		// 2. Mint a one-time pairing code on the server.
-		const codeResp = await callServer("e_sign.api.agent.generate_pairing_code");
+		const codeResp = await callServer("fin_e_sign.api.agent.generate_pairing_code");
 		if (!codeResp || !codeResp.pairing_code) {
 			throw new Error(__("The server did not return a pairing code."));
 		}
@@ -192,7 +192,7 @@ function showPairError(err, port) {
 
 function generateAndShowCode(frm) {
 	frappe.call({
-		method: "e_sign.api.agent.generate_pairing_code",
+		method: "fin_e_sign.api.agent.generate_pairing_code",
 		callback(r) {
 			if (!r || !r.message) return;
 			showPairingDialog(r.message);

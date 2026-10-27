@@ -22,7 +22,7 @@ _HTTP_TIMEOUT_SECONDS = 6
 
 
 def _cache_key(lat, lng):
-	return f"e_sign:geocode:{round(float(lat), 4)}:{round(float(lng), 4)}"
+	return f"fin_e_sign:geocode:{round(float(lat), 4)}:{round(float(lng), 4)}"
 
 
 def reverse_geocode(lat, lng):
@@ -77,7 +77,7 @@ def reverse_geocode(lat, lng):
 
 
 def _nominatim(settings, lat, lng):
-	user_agent = settings.geocoding_user_agent or "e_sign DSC Signing"
+	user_agent = settings.geocoding_user_agent or "fin_e_sign DSC Signing"
 	resp = requests.get(
 		"https://nominatim.openstreetmap.org/reverse",
 		params={"lat": lat, "lon": lng, "format": "jsonv2", "zoom": 18, "addressdetails": 1},

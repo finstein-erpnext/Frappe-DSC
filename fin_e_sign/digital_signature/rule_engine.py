@@ -49,7 +49,7 @@ def _evaluate_rules(doc, trigger_event):
 	"""Core rule evaluation logic. Fetches matching rules, evaluates conditions,
 	and creates a signing request for the first match.
 	"""
-	logger = frappe.logger("e_sign")
+	logger = frappe.logger("fin_e_sign")
 	rules = get_matching_rules(doc.doctype, trigger_event)
 
 	if not rules:
@@ -84,7 +84,7 @@ def _evaluate_rules(doc, trigger_event):
 			# only after the request exists, since DSC Audit Event requires a
 			# signing_request reference.
 			if req_name:
-				from e_sign.digital_signature.audit import log_event
+				from fin_e_sign.digital_signature.audit import log_event
 				log_event(req_name, "Rule Evaluated", {
 					"rule": rule.name,
 					"matched": True,
@@ -170,7 +170,7 @@ def _check_condition(condition, doc):
 	if operator == "contains":
 		return target_value in str(field_value or "")
 
-	frappe.logger("e_sign").warning(
+	frappe.logger("fin_e_sign").warning(
 		f"[DSC] Unknown condition operator '{operator}' on field '{condition.field}' "
 		f"— condition treated as False"
 	)
@@ -218,7 +218,7 @@ def create_signing_request(doc, rule):
 	Returns the request name (existing or newly created) so callers can
 	emit follow-on audit events against it.
 	"""
-	from e_sign.digital_signature.audit import log_event
+	from fin_e_sign.digital_signature.audit import log_event
 
 	existing = frappe.db.exists("DSC Signing Request", {
 		"source_doctype": doc.doctype,
@@ -243,7 +243,7 @@ def create_signing_request(doc, rule):
 	})
 	signing_request.insert(ignore_permissions=True)
 
-	frappe.logger("e_sign").info(
+	frappe.logger("fin_e_sign").info(
 		f"[DSC] Created Signing Request {signing_request.name} for "
 		f"{doc.doctype} {doc.name} via rule {rule.name}"
 	)

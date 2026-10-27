@@ -15,7 +15,7 @@ class DSCDocumentSign(Document):
 
 	Saving a record that has a PDF, a profile and a placed signature box
 	auto-creates a Pending DSC Signing Request. The global "Sign with DSC"
-	button (e_sign.js) then drives the browser ↔ agent ↔ server handshake;
+	button (fin_e_sign.js) then drives the browser ↔ agent ↔ server handshake;
 	api/signing.py recognises this doctype and feeds the uploaded PDF plus the
 	chosen placement into the signing engine instead of a print format.
 	"""

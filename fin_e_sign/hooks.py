@@ -1,8 +1,8 @@
 app_name = "fin_e_sign"
 app_title = "Digital Signature"
-app_publisher = "Ragav"
+app_publisher = "Finstein"
 app_description = "DSC digital signing platform for Frappe & ERPNext"
-app_email = "prasathragav55@gmail.com"
+app_email = "support@finstein.ai"
 app_license = "GPL-3.0"
 
 # Required Apps
